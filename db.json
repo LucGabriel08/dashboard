@@ -1,0 +1,77 @@
+{
+  "clientes": [
+    {
+      "id": "1",
+      "nome": "João da Silva",
+      "telefone": "(61) 99999-1111",
+      "endereco": "QNM 15, Samambaia Norte, Brasília - DF",
+      "email": "joao@email.com"
+    },
+    {
+      "id": "2",
+      "nome": "Maria Oliveira",
+      "telefone": "(61) 98888-2222",
+      "endereco": "QR 20, Samambaia Sul, Brasília - DF",
+      "email": ""
+    },
+    {
+      "nome": "Lucas Gabriel",
+      "telefone": "(61) 99999-1111",
+      "endereco": "Qs 502 con E",
+      "email": "",
+      "id": "RfCS-n75Dak"
+    }
+  ],
+  "equipamentos": [
+    {
+      "id": "1",
+      "clienteId": 1,
+      "tipo": "split",
+      "marca": "LG",
+      "modelo": "Dual Inverter",
+      "capacidadeBTUs": 12000,
+      "dataInstalacao": "2024-03-10"
+    }
+  ],
+  "ordensServico": [
+    {
+      "id": "1",
+      "clienteId": 1,
+      "equipamentoId": 1,
+      "tipo": "manutencao",
+      "data": "2026-08-15",
+      "status": "concluido",
+      "valorCobrado": 180,
+      "observacoes": "Limpeza e recarga de gás",
+      "materiaisUsados": [
+        {
+          "materialId": 1,
+          "nome": "Gás R410a",
+          "quantidade": 1,
+          "custoUnitario": 60
+        }
+      ]
+    }
+  ],
+  "materiais": [
+    {
+      "id": "1",
+      "nome": "Gás R410a",
+      "unidade": "kg",
+      "precoUnitario": 60
+    },
+    {
+      "id": "2",
+      "nome": "Capacitor",
+      "unidade": "un",
+      "precoUnitario": 25
+    },
+    {
+      "id": "3",
+      "nome": "Filtro",
+      "unidade": "un",
+      "precoUnitario": 15
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
