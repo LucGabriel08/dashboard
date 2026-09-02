@@ -26,11 +26,20 @@
     {
       "id": "1",
       "clienteId": 1,
-      "tipo": "split",
+      "tipo": "janela",
       "marca": "LG",
       "modelo": "Dual Inverter",
       "capacidadeBTUs": 12000,
       "dataInstalacao": "2024-03-10"
+    },
+    {
+      "clienteId": "2",
+      "tipo": "split",
+      "marca": "Gree",
+      "modelo": "Inverter",
+      "capacidadeBTUs": 9000,
+      "dataInstalacao": "2026-09-09",
+      "id": "n_hbx_zwVZM"
     }
   ],
   "ordensServico": [

@@ -1,7 +1,7 @@
-import { ClientesList } from "./pages/Clientes/ClientesList";
+import { AppRoutes } from "./routes/AppRoutes";
 
 function App() {
-  return <ClientesList />;
+  return <AppRoutes />;
 }
 
 export default App;
