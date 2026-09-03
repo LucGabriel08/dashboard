@@ -1,9 +1,5 @@
-import axios from "axios";
+import { api } from "./api";
 import type { Cliente, NovoCliente } from "../types/Cliente";
-
-const api = axios.create({
-  baseURL: "http://localhost:3001",
-});
 
 export async function buscarClientes(): Promise<Cliente[]> {
   const resposta = await api.get<Cliente[]>("/clientes");

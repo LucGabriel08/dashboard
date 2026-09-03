@@ -1,12 +1,8 @@
-import axios from "axios";
+import { api } from "./api";
 import type {
   Equipamento,
   NovoEquipamento,
 } from "../types/equipamentos/Equipamento";
-
-const api = axios.create({
-  baseURL: "http://localhost:3001",
-});
 
 export async function buscarEquipamentos(): Promise<Equipamento[]> {
   const resposta = await api.get<Equipamento[]>("/equipamentos");

@@ -58,7 +58,9 @@ export function EquipamentoForm({
           id="clienteId"
           name="clienteId"
           value={formik.values.clienteId}
-          onChange={formik.handleChange}
+          onChange={(e) =>
+            formik.setFieldValue("clienteId", Number(e.target.value))
+          }
           onBlur={formik.handleBlur}
         >
           <option value={0}>Selecione um cliente</option>
@@ -89,7 +91,6 @@ export function EquipamentoForm({
           <S.Erro>{formik.errors.tipo}</S.Erro>
         )}
       </S.Campo>
-
       <S.Campo>
         <label htmlFor="marca">Marca</label>
         <input
