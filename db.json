@@ -74,35 +74,8 @@
       "status": "concluido",
       "valorCobrado": 500,
       "observacoes": "Limpeza e recarga de gás",
-      "id": 1,
-      "materiaisUsados": [
-        {
-          "materialId": 1,
-          "nome": "Gás R410a",
-          "quantidade": 1,
-          "custoUnitario": 60
-        }
-      ]
+      "id": 1
     }
   ],
-  "materiais": [
-    {
-      "id": 1,
-      "nome": "Gás R410a",
-      "unidade": "kg",
-      "precoUnitario": 60
-    },
-    {
-      "id": 2,
-      "nome": "Capacitor",
-      "unidade": "un",
-      "precoUnitario": 25
-    },
-    {
-      "id": 3,
-      "nome": "Filtro",
-      "unidade": "un",
-      "precoUnitario": 15
-    }
-  ]
+  "gastos": []
 }
