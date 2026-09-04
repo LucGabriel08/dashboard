@@ -8,7 +8,6 @@ import {
 } from "../../redux/slices/ordensServicoSlice";
 import { carregarClientes } from "../../redux/slices/clientesSlice";
 import { carregarEquipamentos } from "../../redux/slices/equipamentosSlice";
-import { carregarMateriais } from "../../redux/slices/materiaisSlice";
 import type { OrdemServico, NovaOrdemServico } from "../../types/OrdemServico";
 import { OrdemServicoForm } from "./OrdemServicoForm";
 import * as S from "./OrdemServicoList.styles";
@@ -39,37 +38,35 @@ export function OrdemServicoList() {
     dispatch(carregarOrdensServico());
     dispatch(carregarClientes());
     dispatch(carregarEquipamentos());
-    dispatch(carregarMateriais());
   }, [dispatch]);
+
   function nomeDoCliente(clienteId: number): string {
     const cliente = clientes.find((c) => c.id === clienteId);
     return cliente ? cliente.nome : "Cliente não encontrado";
   }
+
   function nomeDoEquipamento(equipamentoId: number): string {
     const equipamento = equipamentos.find((e) => e.id === equipamentoId);
     return equipamento
       ? `${equipamento.tipo} - ${equipamento.marca} ${equipamento.modelo}`
       : "Equipamento não encontrado";
   }
-  function calcularLucro(ordem: OrdemServico): number {
-    const custoMateriais = ordem.materiaisUsados.reduce(
-      (total, item) => total + item.quantidade * item.custoUnitario,
-      0,
-    );
-    return ordem.valorCobrado - custoMateriais;
-  }
+
   function abrirFormularioNovo() {
     setOrdemEmEdicao(null);
     setFormularioAberto(true);
   }
+
   function abrirFormularioEdicao(ordem: OrdemServico) {
     setOrdemEmEdicao(ordem);
     setFormularioAberto(true);
   }
+
   function fecharFormulario() {
     setFormularioAberto(false);
     setOrdemEmEdicao(null);
   }
+
   function salvarOrdem(dados: NovaOrdemServico) {
     if (ordemEmEdicao) {
       dispatch(editarOrdemServico({ id: ordemEmEdicao.id, dados }));
@@ -78,6 +75,7 @@ export function OrdemServicoList() {
     }
     fecharFormulario();
   }
+
   function excluirOrdemHandler(id: number) {
     const confirmou = window.confirm(
       "Tem certeza que deseja excluir esta ordem de serviço?",
@@ -86,12 +84,15 @@ export function OrdemServicoList() {
       dispatch(removerOrdemServico(id));
     }
   }
+
   if (carregando) {
     return <S.Mensagem>Carregando ordens de serviço...</S.Mensagem>;
   }
+
   if (erro) {
     return <S.Mensagem>{erro}</S.Mensagem>;
   }
+
   if (formularioAberto) {
     return (
       <S.Container>
@@ -128,7 +129,6 @@ export function OrdemServicoList() {
               <th>Data</th>
               <th>Status</th>
               <th>Valor</th>
-              <th>Lucro</th>
               <th></th>
             </tr>
           </thead>
@@ -141,7 +141,6 @@ export function OrdemServicoList() {
                 <td>{ordem.data}</td>
                 <td>{statusLabel[ordem.status]}</td>
                 <td>R$ {ordem.valorCobrado}</td>
-                <td>R$ {calcularLucro(ordem)}</td>
                 <td>
                   <S.BotaoAcao onClick={() => abrirFormularioEdicao(ordem)}>
                     Editar

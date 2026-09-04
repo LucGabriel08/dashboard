@@ -2,11 +2,11 @@ import * as yup from "yup";
 
 export const ordemServicoValidationSchema = yup.object({
   clienteId: yup.number().required().min(1, "Selecione um cliente"),
-  equipamnetoId: yup.number().required().min(1, "Selecione um equipamento"),
+  equipamentoId: yup.number().required().min(1, "Selecione um equipamento"),
   tipo: yup
     .string()
     .oneOf(["manutencao", "instalacao"])
-    .required("Selecione um tipo"),
+    .required("Selecione o tipo"),
   data: yup.string().required("A data é obrigatória"),
   status: yup
     .string()

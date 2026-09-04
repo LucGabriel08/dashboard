@@ -67,14 +67,14 @@
   ],
   "ordensServico": [
     {
-      "id": 1,
       "clienteId": 1,
       "equipamentoId": 1,
       "tipo": "manutencao",
       "data": "2026-08-15",
       "status": "concluido",
-      "valorCobrado": 180,
+      "valorCobrado": 500,
       "observacoes": "Limpeza e recarga de gás",
+      "id": 1,
       "materiaisUsados": [
         {
           "materialId": 1,

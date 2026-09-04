@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { useFormik } from "formik";
 import { useAppSelector } from "../../redux/hooks";
-import type { NovaOrdemServico, MaterialUsado } from "../../types/OrdemServico";
+import type { NovaOrdemServico } from "../../types/OrdemServico";
 import { ordemServicoValidationSchema } from "./ordemServicoValidation";
 import * as S from "./OrdemServicoForm.styles";
 
@@ -19,7 +18,6 @@ const valoresVazios: NovaOrdemServico = {
   status: "agendado",
   valorCobrado: 0,
   observacoes: "",
-  materiaisUsados: [],
 };
 
 export function OrdemServicoForm({
@@ -29,57 +27,17 @@ export function OrdemServicoForm({
 }: OrdemServicoFormProps) {
   const clientes = useAppSelector((state) => state.clientes.lista);
   const equipamentos = useAppSelector((state) => state.equipamentos.lista);
-  const materiaisCatalogo = useAppSelector((state) => state.materiais.lista);
-
-  const [materiaisUsados, setMateriaisUsados] = useState<MaterialUsado[]>(
-    valoresIniciais?.materiaisUsados ?? [],
-  );
-  const [materialSelecionadoId, setMaterialSelecionadoId] = useState(0);
-  const [quantidadeMaterial, setQuantidadeMaterial] = useState(1);
 
   const formik = useFormik<NovaOrdemServico>({
-    initialValues: valoresIniciais ?? valoresVazios,
+    initialValues: { ...valoresVazios, ...valoresIniciais },
     validationSchema: ordemServicoValidationSchema,
     onSubmit: (valores) => {
-      aoSalvar({ ...valores, materiaisUsados });
+      aoSalvar(valores);
     },
   });
 
   const equipamentosDoCliente = equipamentos.filter(
     (equipamento) => equipamento.clienteId === formik.values.clienteId,
-  );
-
-  function adicionarMaterial() {
-    if (materialSelecionadoId === 0 || quantidadeMaterial <= 0) {
-      return;
-    }
-
-    const material = materiaisCatalogo.find(
-      (m) => m.id === materialSelecionadoId,
-    );
-    if (!material) {
-      return;
-    }
-
-    const novoItem: MaterialUsado = {
-      materialId: material.id,
-      nome: material.nome,
-      quantidade: quantidadeMaterial,
-      custoUnitario: material.precoUnitario,
-    };
-
-    setMateriaisUsados([...materiaisUsados, novoItem]);
-    setMaterialSelecionadoId(0);
-    setQuantidadeMaterial(1);
-  }
-
-  function removerMaterial(index: number) {
-    setMateriaisUsados(materiaisUsados.filter((_, i) => i !== index));
-  }
-
-  const custoTotalMateriais = materiaisUsados.reduce(
-    (total, item) => total + item.quantidade * item.custoUnitario,
-    0,
   );
 
   return (
@@ -205,53 +163,6 @@ export function OrdemServicoForm({
           onBlur={formik.handleBlur}
         />
       </S.Campo>
-
-      <S.SecaoMateriais>
-        <S.SubTitulo>Materiais usados</S.SubTitulo>
-
-        <S.LinhaAdicionarMaterial>
-          <select
-            value={materialSelecionadoId}
-            onChange={(e) => setMaterialSelecionadoId(Number(e.target.value))}
-          >
-            <option value={0}>Selecione um material</option>
-            {materiaisCatalogo.map((material) => (
-              <option key={material.id} value={material.id}>
-                {material.nome} (R$ {material.precoUnitario})
-              </option>
-            ))}
-          </select>
-          <input
-            type="number"
-            min={1}
-            value={quantidadeMaterial}
-            onChange={(e) => setQuantidadeMaterial(Number(e.target.value))}
-          />
-          <S.BotaoAdicionarMaterial type="button" onClick={adicionarMaterial}>
-            Adicionar
-          </S.BotaoAdicionarMaterial>
-        </S.LinhaAdicionarMaterial>
-
-        {materiaisUsados.length > 0 && (
-          <S.ListaMateriais>
-            {materiaisUsados.map((item, index) => (
-              <S.ItemMaterial key={index}>
-                <span>
-                  {item.nome} — {item.quantidade}x R$ {item.custoUnitario} = R${" "}
-                  {item.quantidade * item.custoUnitario}
-                </span>
-                <button type="button" onClick={() => removerMaterial(index)}>
-                  Remover
-                </button>
-              </S.ItemMaterial>
-            ))}
-          </S.ListaMateriais>
-        )}
-
-        <S.CustoTotal>
-          Custo total de materiais: R$ {custoTotalMateriais}
-        </S.CustoTotal>
-      </S.SecaoMateriais>
 
       <S.Botoes>
         <S.BotaoCancelar type="button" onClick={aoCancelar}>
