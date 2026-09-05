@@ -1,13 +1,13 @@
 import { api } from "./api";
 import type { Gasto, NovoGasto } from "../types/Gasto";
 
-export async function BuscarGastos(): Promise<Gasto[]> {
+export async function buscarGastos(): Promise<Gasto[]> {
   const resposta = await api.get<Gasto[]>("/gastos");
   return resposta.data;
 }
 
-export async function CriarGastos(gasto: NovoGasto): Promise<Gasto> {
-  const resposta = await api.post<Gasto>("/gastos");
+export async function criarGasto(gasto: NovoGasto): Promise<Gasto> {
+  const resposta = await api.post<Gasto>("/gastos", gasto);
   return resposta.data;
 }
 

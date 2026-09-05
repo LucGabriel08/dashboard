@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import type { NovoCliente } from "../../types/Cliente";
 import { clienteValidationSchema } from "./clienteValidation";
 import * as S from "./ClienteForm.styles";
+import { mascararTelefone } from "../../utils/mascaras";
 
 interface ClienteFormProps {
   valoresIniciais?: NovoCliente;
@@ -53,8 +54,12 @@ export function ClienteForm({
           name="telefone"
           type="text"
           value={formik.values.telefone}
-          onChange={formik.handleChange}
+          onChange={(e) => {
+            const valorFormatado = mascararTelefone(e.target.value);
+            formik.setFieldValue("telefone", valorFormatado);
+          }}
           onBlur={formik.handleBlur}
+          maxLength={15}
         />
         {formik.touched.telefone && formik.errors.telefone && (
           <S.Erro>{formik.errors.telefone}</S.Erro>

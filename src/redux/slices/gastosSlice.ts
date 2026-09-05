@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Gasto, NovoGasto } from "../../types/Gasto";
 import {
-  BuscarGastos,
-  CriarGastos,
+  buscarGastos,
+  criarGasto,
   atualizarGasto,
   excluirGasto,
 } from "../../services/gastoService";
@@ -21,13 +21,13 @@ const estadoInicial: GastosState = {
 };
 
 export const carregarGastos = createAsyncThunk("gastos/carregar", async () => {
-  return await BuscarGastos();
+  return await buscarGastos();
 });
 
 export const adicionarGasto = createAsyncThunk(
   "gastos/adicionar",
   async (novoGasto: NovoGasto) => {
-    return await CriarGastos(novoGasto);
+    return await criarGasto(novoGasto);
   },
 );
 

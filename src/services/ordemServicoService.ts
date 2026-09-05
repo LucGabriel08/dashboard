@@ -7,19 +7,22 @@ export async function buscarOrdensServicos(): Promise<OrdemServico[]> {
 }
 
 export async function criarOrdemServico(
-  OrdemServico: NovaOrdemServico,
+  novaOrdemServico: NovaOrdemServico,
 ): Promise<OrdemServico> {
-  const resposta = await api.post<OrdemServico>("/ordensServico");
+  const resposta = await api.post<OrdemServico>(
+    "/ordensServico",
+    novaOrdemServico,
+  );
   return resposta.data;
 }
 
 export async function atualizarOrdemServico(
   id: number,
-  OrdemServico: NovaOrdemServico,
+  ordemServico: NovaOrdemServico,
 ): Promise<OrdemServico> {
   const resposta = await api.put<OrdemServico>(
     `/ordensServico/${id}`,
-    OrdemServico,
+    ordemServico,
   );
   return resposta.data;
 }

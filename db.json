@@ -1,50 +1,45 @@
 {
   "clientes": [
     {
-      "id": 1,
-      "nome": "João da Silva",
-      "telefone": "(61) 99999-1111",
-      "endereco": "QNM 15, Samambaia Norte, Brasília - DF",
-      "email": "joao@email.com"
-    },
-    {
-      "id": 2,
-      "nome": "Maria Oliveira",
-      "telefone": "(61) 98888-2222",
-      "endereco": "QR 20, Samambaia Sul, Brasília - DF",
-      "email": ""
-    },
-    {
       "nome": "Lucas Gabriel",
       "telefone": "(61) 99999-1111",
-      "endereco": "Qs 502 con E",
-      "email": "",
-      "id": 3
+      "endereco": "QNM 15, Samambaia Norte, Brasília - DF",
+      "email": "lucas@gmail.com",
+      "id": 1
     },
     {
       "nome": "Ana Luiza",
-      "telefone": "(34) 43243-2412",
-      "endereco": "Qs 502 con E",
+      "telefone": "(61)99529-5441",
+      "endereco": "Qs 502 conj E Lote 4 ",
       "email": "",
-      "id": 4
+      "id": 2
     },
     {
       "nome": "Giullia",
-      "telefone": "(61)99529-544",
-      "endereco": "QNM 15, Samambaia Norte, Brasília - DF",
+      "telefone": "(34) 43243-241",
+      "endereco": "QS 408 conj E lote 1/2 ",
       "email": "",
-      "id": 5
+      "id": 3
     }
   ],
   "equipamentos": [
     {
-      "id": 1,
       "clienteId": 1,
       "tipo": "split",
-      "marca": "LG",
-      "modelo": "Dual Inverter",
+      "marca": "Samsung",
+      "modelo": "Inverter",
       "capacidadeBTUs": 12000,
-      "dataInstalacao": "2024-03-10"
+      "dataInstalacao": "2026-09-03",
+      "id": 1
+    },
+    {
+      "clienteId": 2,
+      "tipo": "split",
+      "marca": "Gree",
+      "modelo": "Inverter",
+      "capacidadeBTUs": 9000,
+      "dataInstalacao": "2026-09-11",
+      "id": 2
     },
     {
       "clienteId": 3,
@@ -52,16 +47,7 @@
       "marca": "Gree",
       "modelo": "ACJ",
       "capacidadeBTUs": 9000,
-      "dataInstalacao": "2026-09-05",
-      "id": 2
-    },
-    {
-      "clienteId": 5,
-      "tipo": "central",
-      "marca": "Samsung",
-      "modelo": "VRF",
-      "capacidadeBTUs": 180000,
-      "dataInstalacao": "2026-09-15",
+      "dataInstalacao": "2026-09-07",
       "id": 3
     }
   ],
@@ -69,13 +55,55 @@
     {
       "clienteId": 1,
       "equipamentoId": 1,
-      "tipo": "manutencao",
-      "data": "2026-08-15",
+      "tipo": "instalacao",
+      "data": "2026-09-03",
       "status": "concluido",
-      "valorCobrado": 500,
-      "observacoes": "Limpeza e recarga de gás",
+      "valorCobrado": 800,
+      "observacoes": "instalação ",
       "id": 1
+    },
+    {
+      "clienteId": 2,
+      "equipamentoId": 2,
+      "tipo": "manutencao",
+      "data": "2026-09-11",
+      "status": "concluido",
+      "valorCobrado": 180,
+      "observacoes": "troca de capacitor",
+      "id": 2
+    },
+    {
+      "clienteId": 3,
+      "equipamentoId": 3,
+      "tipo": "manutencao",
+      "data": "2026-09-07",
+      "status": "concluido",
+      "valorCobrado": 150,
+      "observacoes": "higienização ",
+      "id": 3
     }
   ],
-  "gastos": []
+  "gastos": [
+    {
+      "descricao": "4 metros de tubulacao/ uma fita pvc/ 4 esponjosos ",
+      "valor": 250,
+      "data": "2026-09-03",
+      "categoria": "material",
+      "id": 1
+    },
+    {
+      "descricao": "gasolina ",
+      "valor": 50,
+      "data": "2026-09-03",
+      "categoria": "combustivel",
+      "id": 2
+    },
+    {
+      "descricao": "capacitor",
+      "valor": 30,
+      "data": "2026-09-11",
+      "categoria": "material",
+      "id": 3
+    }
+  ]
 }

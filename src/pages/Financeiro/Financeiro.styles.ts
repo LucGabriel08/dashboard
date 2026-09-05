@@ -31,6 +31,10 @@ export const Card = styled.div<{ $destaque?: boolean }>`
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   border-left: 4px solid ${(props) => (props.$destaque ? "#16a34a" : "#2563eb")};
+
+  @media (max-width: 480px) {
+    min-width: 100%;
+  }
 `;
 
 export const CardLabel = styled.p`
@@ -45,10 +49,48 @@ export const CardValor = styled.p`
   color: #1a1a1a;
 `;
 
+export const SecaoSemanal = styled.div`
+  margin-bottom: 32px;
+`;
+
+export const TabelaSemanal = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+  thead {
+    background-color: #f2f2f2;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+  }
+
+  th {
+    color: #444;
+    font-weight: 600;
+  }
+
+  tbody tr:last-child {
+    background-color: #f9fafb;
+  }
+`;
+
 export const Graficos = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const GraficoBox = styled.div`

@@ -6,24 +6,8 @@ import type {
   TipoEquipamento,
 } from "../../types/equipamentos/Equipamento";
 import * as S from "./EquipamentoForm.styles";
+import { equipamentoValidationSchema } from "./equipamentoValidation";
 
-const validationSchema = yup.object({
-  clienteId: yup
-    .number()
-    .required("Selecione um cliente")
-    .min(1, "Selecione um cliente"),
-  tipo: yup
-    .string()
-    .oneOf(["split", "janela", "central"], "Selecione um tipo válido")
-    .required("Selecione o tipo"),
-  marca: yup.string().required("A marca é obrigatória"),
-  modelo: yup.string().required("O modelo é obrigatório"),
-  capacidadeBTUs: yup
-    .number()
-    .required("A capacidade é obrigatória")
-    .positive("Precisa ser um número positivo"),
-  dataInstalacao: yup.string().required("A data de instalação é obrigatória"),
-});
 interface EquipamentoFormProps {
   valoresIniciais?: NovoEquipamento;
   aoSalvar: (dados: NovoEquipamento) => void;
@@ -44,8 +28,8 @@ export function EquipamentoForm({
 }: EquipamentoFormProps) {
   const clientes = useAppSelector((state) => state.clientes.lista);
   const formik = useFormik<NovoEquipamento>({
-    initialValues: valoresIniciais ?? valoresVazios,
-    validationSchema,
+    initialValues: { ...valoresVazios, ...valoresIniciais },
+    validationSchema: equipamentoValidationSchema,
     onSubmit: (valores) => {
       aoSalvar(valores);
     },
@@ -121,14 +105,27 @@ export function EquipamentoForm({
       </S.Campo>
       <S.Campo>
         <label htmlFor="capacidadeBTUs">Capacidade (BTUs)</label>
-        <input
+        <select
           id="capacidadeBTUs"
           name="capacidadeBTUs"
-          type="number"
           value={formik.values.capacidadeBTUs}
-          onChange={formik.handleChange}
+          onChange={(e) =>
+            formik.setFieldValue("capacidadeBTUs", Number(e.target.value))
+          }
           onBlur={formik.handleBlur}
-        />
+        >
+          <option value={0}>Selecione a capacidade</option>
+          <option value={7000}>7.000 BTUs</option>
+          <option value={9000}>9.000 BTUs</option>
+          <option value={12000}>12.000 BTUs</option>
+          <option value={18000}>18.000 BTUs</option>
+          <option value={22000}>22.000 BTUs</option>
+          <option value={24000}>24.000 BTUs</option>
+          <option value={30000}>30.000 BTUs</option>
+          <option value={36000}>36.000 BTUs</option>
+          <option value={48000}>48.000 BTUs</option>
+          <option value={60000}>60.000 BTUs</option>
+        </select>
         {formik.touched.capacidadeBTUs && formik.errors.capacidadeBTUs && (
           <S.Erro>{formik.errors.capacidadeBTUs}</S.Erro>
         )}
