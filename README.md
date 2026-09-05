@@ -1,75 +1,72 @@
-# React + TypeScript + Vite
+#  Dashboard de Manutenção de Ar-Condicionado
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de gestão para técnico autônomo de refrigeração: controle de clientes,
+equipamentos instalados, ordens de serviço e financeiro (faturamento, gastos e lucro),
+com gráficos e relatórios automáticos.
 
-Currently, two official plugins are available:
+Projeto desenvolvido como parte do meu portfólio na transição de carreira para
+desenvolvimento Front-End, aplicando na prática o conteúdo do curso de
+Desenvolvedor Full Stack Python (EBAC) e da graduação em Análise e
+Desenvolvimento de Sistemas (UDF) — unindo isso à minha experiência real como
+Técnico em Refrigeração.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Funcionalidades
 
-## React Compiler
+- **Clientes** — cadastro completo (CRUD): nome, telefone (com máscara), endereço, e-mail
+- **Equipamentos** — vinculados a um cliente, com tipo, marca, modelo e capacidade (BTUs)
+- **Ordens de Serviço** — manutenção ou instalação, com status, valor cobrado e observações
+- **Gastos** — controle de despesas por categoria (material, combustível, ferramenta, outro)
+- **Financeiro** — dashboard com faturamento, gastos, lucro, resumo semanal do mês e
+  gráficos interativos (Recharts)
+- **Responsivo** — layout com sidebar (desktop) e menu hambúrguer (mobile)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  Tecnologias
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) — build tool
+- [Redux Toolkit](https://redux-toolkit.js.org/) — gerenciamento de estado global
+- [React Router DOM](https://reactrouter.com/) — navegação entre páginas
+- [Styled Components](https://styled-components.com/) — estilização
+- [Formik](https://formik.org/) + [Yup](https://github.com/jquense/yup) — formulários e validação
+- [Recharts](https://recharts.org/) — gráficos
+- [Axios](https://axios-http.com/) — requisições HTTP
+- [JSON Server](https://github.com/typicode/json-server) — API REST simulada para desenvolvimento
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+##  Como rodar o projeto
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Pré-requisitos: [Node.js](https://nodejs.org/) instalado.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# Clone o repositório
+git clone <url-do-seu-repositorio>
+cd react-ts
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Instale as dependências
+npm install
 
+# Rode o front-end e a API fake juntos
+npm run dev:all
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+O projeto abre em `http://localhost:5173`. A API fake (json-server) roda em
+`http://localhost:3001`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+> **Sobre os dados:** este projeto usa uma API simulada (json-server) para fins de
+> desenvolvimento e portfólio. Os dados ficam salvos localmente no arquivo `db.json`,
+> no computador de quem estiver rodando o projeto — ou seja, cada pessoa que rodar
+> o projeto localmente tem seus próprios dados, isolados dos demais.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Estrutura do projeto 
 
-```
+src/
+├── components/ # Componentes e estilos compartilhados entre telas
+├── pages/ # Telas da aplicação (Clientes, Equipamentos, OrdensServico, Gastos, Financeiro)
+├── redux/
+│ ├── store.ts
+│ ├── hooks.ts
+│ └── slices/ # Um slice por entidade (clientes, equipamentos, ordensServico, gastos)
+├── services/ # Comunicação com a API (um arquivo por entidade)
+├── types/ # Interfaces e tipos TypeScript
+├── routes/ # Configuração de rotas e layout (sidebar)
+├── utils/ # Funções utilitárias (ex: máscara de telefone)
+└── styles/ # Estilos globais

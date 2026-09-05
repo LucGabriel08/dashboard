@@ -4,7 +4,9 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 420px;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
   padding: 24px;
   background-color: #fff;
   border-radius: 8px;
