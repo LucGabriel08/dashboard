@@ -10,7 +10,6 @@ import {
   atualizarEquipamento,
   excluirEquipamento,
 } from "../../services/equipamentoService";
-import { boolean } from "yup";
 
 interface EquipamentosState {
   lista: Equipamento[];

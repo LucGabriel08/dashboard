@@ -1,10 +1,6 @@
 import { useFormik } from "formik";
-import * as yup from "yup";
 import { useAppSelector } from "../../redux/hooks";
-import type {
-  NovoEquipamento,
-  TipoEquipamento,
-} from "../../types/equipamentos/Equipamento";
+import type { NovoEquipamento } from "../../types/equipamentos/Equipamento";
 import * as S from "./EquipamentoForm.styles";
 import { equipamentoValidationSchema } from "./equipamentoValidation";
 
