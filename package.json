@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "api": "json-server --watch db.json --port 3001",
-    "dev:all": "concurrently \"npm run dev\" \"npm run api\"",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+  "dev": "vite",
+  "api": "json-server --watch db.json --port 3001",
+  "dev:all": "concurrently \"npm run dev\" \"npm run api\"",
+  "build": "tsc -b && vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "start:api": "json-server --watch db.json --port $PORT"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
