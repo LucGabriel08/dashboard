@@ -70,3 +70,14 @@ src/
 ├── routes/ # Configuração de rotas e layout (sidebar)
 ├── utils/ # Funções utilitárias (ex: máscara de telefone)
 └── styles/ # Estilos globais
+
+> ## 🔒 Nota sobre segurança
+
+Este é um projeto de portfólio com API pública de demonstração (json-server), sem
+autenticação — qualquer pessoa com o link pode ler e alterar os dados de exemplo.
+Isso é intencional para fins de avaliação: qualquer recrutador pode acessar e testar
+livremente, sem precisar de credenciais.
+
+Numa versão para uso real (por exemplo, por um técnico autônomo e seus clientes), a
+arquitetura evoluiria para um backend com autenticação por usuário e persistência de
+dados isolada por conta — diferente do modelo atual, pensado apenas para demonstração.
