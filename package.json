@@ -10,7 +10,7 @@
   "build": "tsc -b && vite build",
   "lint": "eslint .",
   "preview": "vite preview",
-  "start:api": "json-server --watch db.json --port $PORT"
+  "start:api": "json-server --watch db.json --port $PORT --host 0.0.0.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
